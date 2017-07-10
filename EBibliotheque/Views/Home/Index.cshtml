@@ -1,7 +1,19 @@
-﻿
+﻿@model List<EBibliotheque.Models.Livre>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+<br />
+<div class="row">
+    @foreach (EBibliotheque.Models.Livre livre in Model)
+    {
+        <div class="col-lg-4">
+            @*<p>@livre.Id</p>*@
+            <p>@livre.Titre</p>
+            @*<p>@livre.DateParution</p>*@
+            @*<p>@livre.Auteur.Nom</p>*@
+        </div>
+    }
+</div>
 

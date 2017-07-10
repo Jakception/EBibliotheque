@@ -1,0 +1,17 @@
+﻿@model List<EBibliotheque.Models.Auteur>
+@{
+    ViewBag.Title = "AfficheAuteurs";
+}
+
+<h2>AfficheAuteurs</h2>
+
+<div class="row">
+    @foreach (EBibliotheque.Models.Auteur auteur in Model)
+    {
+        <div class="col-lg-4">
+            <p>@auteur.Id</p>
+            <p>@auteur.Nom</p>
+        </div>
+    }
+</div>
+

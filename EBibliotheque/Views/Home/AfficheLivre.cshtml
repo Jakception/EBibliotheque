@@ -1,0 +1,38 @@
+﻿@model EBibliotheque.Models.Livre
+@{
+    ViewBag.Title = "ChercheLivre";
+}
+
+<h2>ChercheLivre</h2>
+<br />
+@using (Html.BeginForm("AfficheLivre", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Recherche" class="btn btn-default" />
+        </div>
+    </div>
+}
+<div class="row">
+    @if (Model != null)
+    {
+        <div class="col-lg-4">
+            <p>@Model.Id</p>
+            <p>@Model.Titre</p>
+            <p>@Model.DateDeParution.ToString()</p>
+            @*<p>@Model.Auteur.Nom</p>*@
+        </div>
+    }
+    else
+    {
+        <p>Le livre n'existe pas avec cet Id</p>
+    }
+</div>
+
