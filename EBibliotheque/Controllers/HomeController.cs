@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using EBibliotheque.Models;
+using EBibliotheque.ViewModels;
 
 namespace EBibliotheque.Controllers
 {
@@ -48,10 +49,14 @@ namespace EBibliotheque.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LivresPourUnAuteur(int id)
+        public ActionResult LivresPourUnAuteur(LivresAuteurViewModel livresAuteurViewModel)
         {
-            List<Livre> listeLivreAuteurs = dal.ObtientLivresDUnAuteur(id);
-            return View(listeLivreAuteurs);
+            Auteur auteurRecherche = dal.ChercheAuteur(livresAuteurViewModel.auteur.Nom);
+            List<Livre> listeLivreAuteurs = dal.ObtientLivresDUnAuteur(auteurRecherche.Id);
+
+            LivresAuteurViewModel livresAuteurViewModelResultat = new LivresAuteurViewModel { auteur = auteurRecherche, listeLivres = listeLivreAuteurs };
+
+            return View(livresAuteurViewModelResultat);
         }
     }
 }

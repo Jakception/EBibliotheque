@@ -40,6 +40,11 @@ namespace EBibliotheque.Models
             bdd.SaveChanges();
         }
 
+        public Auteur ChercheAuteur(string nom)
+        {
+            return bdd.Auteurs.FirstOrDefault(a => a.Nom == nom);
+        }
+
         public void Dispose()
         {
             bdd.Dispose();

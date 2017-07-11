@@ -12,6 +12,7 @@ namespace EBibliotheque.Models
         List<Auteur> ObtientTousLesAuteurs();
         List<Livre> ObtientLivresDUnAuteur(int id);
         Livre ChercheLivre(int id);
+        Auteur ChercheAuteur(string nom);
         void CreerEchantillon();
         void CreerLivre(string titre);
     }

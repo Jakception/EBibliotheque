@@ -1,7 +1,39 @@
-﻿@model List<EBibliotheque.Models.Livre>
+﻿@model EBibliotheque.ViewModels.LivresAuteurViewModel
 @{
     ViewBag.Title = "LivresPourUnAuteur";
 }
 
-<h2>LivresPourUnAuteur</h2>
-
+<h2>Veuillez saisir le nom d'un auteur</h2>
+<br />
+@using (Html.BeginForm("LivresPourUnAuteur", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.auteur.Nom, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.auteur.Nom, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.auteur.Nom)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Recherche" class="btn btn-default" />
+        </div>
+    </div>
+}
+<div class="row">
+    @if (Model != null)
+    {
+        foreach (EBibliotheque.Models.Livre livre in Model.listeLivres)
+        {
+            <div class="col-lg-4">
+                <p>@livre.Id</p>
+                <p>@livre.Titre</p>
+                <p>@livre.DateDeParution.ToString()</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>L'auteur n'existe pas ou ne possède pas de livre</p>
+    }
+</div>
